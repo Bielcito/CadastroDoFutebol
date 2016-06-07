@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>cadastroTemporada</class>
+ <widget class="QWidget" name="cadastroTemporada">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>642</width>
+    <height>521</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Cadastro de Temporada</string>
+  </property>
+  <widget class="QComboBox" name="campeonatoRelacionado">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>30</y>
+     <width>151</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Campeonato relacionado:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="tempNomeLabel">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>30</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="maxLength">
+    <number>150</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>10</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nome da temporada:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>360</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Fórmula de disputa:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="confirmar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>470</y>
+     <width>70</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Confirmar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>470</y>
+     <width>70</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancelar</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="tempDescricao">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>380</y>
+     <width>371</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>201</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Tempo normal:</string>
+   </property>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pontos por vitória:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="tempPontosVitoria">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pontos por empate:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="tempPontosEmpate">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>190</y>
+     <width>201</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Prorrogação:</string>
+   </property>
+   <widget class="QSpinBox" name="tempPontosVitoriaProrrogacao">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pontos de vitória na prorrogação:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="tempPontosEmpateProrrogacao">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>171</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pontos de empate em prorrogação:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="tempPontosDerrotaProrrogacao">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>171</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pontos de derrota na prorrogação:</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>370</y>
+     <width>201</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Pênaltis</string>
+   </property>
+   <widget class="QSpinBox" name="tempPontosVitoriaPenaltis">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pontos de vitória nos pênaltis:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="tempPontosDerrotaPenaltis">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>171</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pontos de derrota nos pênaltis:</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_4">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>60</y>
+     <width>391</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Tabela de Classificação:</string>
+   </property>
+   <widget class="QSpinBox" name="tempNumTimesRebaixamento">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>190</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="tempNumCompet1">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>191</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Nº de Equipes Play-Off Rebaixamento:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_15">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>191</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Nº de Equipes Competição 2:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>191</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Nº de Equipes Competição 1:</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="tempNumCompet2">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="tempNumTimesRebaixados">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Nº de Equipes Rebaixadas:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="tempBaixo">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>210</y>
+      <width>143</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>↓ </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>231</x>
+      <y>20</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Critérios de desempate:</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="tempCriteriosDesempate">
+    <property name="geometry">
+     <rect>
+      <x>231</x>
+      <y>41</y>
+      <width>141</width>
+      <height>151</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="tempCima">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>190</y>
+      <width>143</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>↑ </string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="tempNumTimesPromovidos">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>41</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Nº de Equipes Promovidas:</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>30</y>
+      <width>20</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>campeonatoRelacionado</tabstop>
+  <tabstop>tempNomeLabel</tabstop>
+  <tabstop>tempPontosVitoria</tabstop>
+  <tabstop>tempPontosEmpate</tabstop>
+  <tabstop>tempPontosVitoriaProrrogacao</tabstop>
+  <tabstop>tempPontosDerrotaProrrogacao</tabstop>
+  <tabstop>tempPontosDerrotaPenaltis</tabstop>
+  <tabstop>tempNumTimesRebaixados</tabstop>
+  <tabstop>tempNumTimesPromovidos</tabstop>
+  <tabstop>tempPontosEmpateProrrogacao</tabstop>
+  <tabstop>tempNumCompet1</tabstop>
+  <tabstop>tempNumCompet2</tabstop>
+  <tabstop>tempNumTimesRebaixamento</tabstop>
+  <tabstop>tempDescricao</tabstop>
+  <tabstop>confirmar</tabstop>
+  <tabstop>cancelar</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

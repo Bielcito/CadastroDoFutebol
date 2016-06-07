@@ -1,0 +1,78 @@
+#include "tipocampeonato.h"
+#include "ui_tipocampeonato.h"
+
+tipoCampeonato::tipoCampeonato(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::tipoCampeonato)
+{
+    ui->setupUi(this);
+
+    setWindowModality(Qt::ApplicationModal);
+
+    atualizarTabela();
+}
+
+tipoCampeonato::~tipoCampeonato()
+{
+    delete ui;
+}
+
+void tipoCampeonato::on_tabela_itemSelectionChanged()
+{
+    if(ui->tabela->selectedItems().size() > 0)
+    {
+        ui->editar->setEnabled(true);
+        ui->excluir->setEnabled(true);
+    }
+    else
+    {
+        ui->editar->setEnabled(false);
+        ui->excluir->setEnabled(false);
+    }
+}
+
+void tipoCampeonato::on_editar_clicked()
+{
+    QString itemselecionado = ui->tabela->selectedItems().first()->text();
+
+    tipoCampeonatoSecondWindow* tipoSecondWindow = new tipoCampeonatoSecondWindow(itemselecionado);
+    connect(tipoSecondWindow, SIGNAL(destroyed()), this, SLOT(atualizarTabela()));
+    tipoSecondWindow->show();
+}
+
+void tipoCampeonato::atualizarTabela()
+{
+    zerarTabela();
+
+    QSqlQuery query;
+    if(!query.exec("SELECT * FROM tipocampeonato ORDER BY nometipocampeonato DESC"))
+    {
+        QMessageBox::critical(0, "Erro!", query.lastError().text());
+    }
+
+    while(query.next())
+    {
+        ui->tabela->insertRow(0);
+        ui->tabela->setItem(0,0, new QTableWidgetItem(query.value(1).toString()));
+    }
+}
+
+void tipoCampeonato::on_novo_clicked()
+{
+    tipoCampeonatoSecondWindow* tipoSecondWindow = new tipoCampeonatoSecondWindow();
+    connect(tipoSecondWindow, SIGNAL(destroyed()),this,SLOT(atualizarTabela()));
+    tipoSecondWindow->show();
+}
+
+void tipoCampeonato::zerarTabela()
+{
+    ui->tabela->clear();
+    ui->tabela->setRowCount(0);
+}
+
+void tipoCampeonato::on_excluir_clicked()
+{
+    QSqlQuery query;
+    QString itemselecionado = ui->tabela->selectedItems().first()->text();
+    query.exec("DELETE FROM ONLY tipocampeonato WHERE nometipocampeonato = '" +  + "'")
+}
