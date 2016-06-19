@@ -19,8 +19,7 @@ class cadastroJogo : public QWidget
     Q_OBJECT
 
 public:
-    explicit cadastroJogo(QString codtemporada, QString codfase, QString codgrupo, QString codrodada, QWidget *parent = 0);
-    explicit cadastroJogo(QString codtemporada, QString codfase, QString codgrupo, QString codrodada, QStringList equipes, QWidget *parent = 0);
+    explicit cadastroJogo(QString codtemporada, QString codfase, QString codgrupo, QString codrodada, bool isTorneio, QWidget *parent = 0);
     explicit cadastroJogo(
             QString codjogo,
             QString codestruturatemporada,
@@ -64,7 +63,6 @@ private:
     bool editMode;
     void keyPressEvent(QKeyEvent *e);
     void inicializarListas();
-    void inicializarListas(QStringList equipes);
     void inicializarComboBox();
     QString codfase;
     QString codgrupo;
@@ -75,6 +73,7 @@ private:
     QStringList estadios;
     bool editandoEquipeCasa;
     bool editandoEquipeFora;
+    bool isTorneio;
 
 private slots:
     void atualizarComboBoxEquipeCasa();

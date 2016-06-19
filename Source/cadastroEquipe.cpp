@@ -396,7 +396,14 @@ void cadastroEquipe::on_RemoverImagem_clicked()
 
 void cadastroEquipe::resizeEvent(QResizeEvent *e)
 {
-    setPixmap();
+    if(e)
+    {
+        setPixmap();
+    }
+    else
+    {
+        setPixmap();
+    }
 }
 
 void cadastroEquipe::keyPressEvent(QKeyEvent *e)

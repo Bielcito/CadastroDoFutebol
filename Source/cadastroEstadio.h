@@ -9,6 +9,7 @@
 #include <QSqlError>
 #include <iostream>
 #include <windows.h>
+#include <QtEvents>
 using std::cout;
 using std::endl;
 

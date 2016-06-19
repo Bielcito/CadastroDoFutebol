@@ -267,7 +267,14 @@ void cadastroCampeonato::atualizarComboBox()
 
 void cadastroCampeonato::resizeEvent(QResizeEvent* e)
 {
-    setPixmap();
+    if(e)
+    {
+        setPixmap();
+    }
+    else
+    {
+        setPixmap();
+    }
 }
 
 void cadastroCampeonato::setPixmap()

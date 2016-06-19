@@ -148,7 +148,7 @@ void telaTemporada::mostrar_jogos()
 
 void telaTemporada::on_Incluir_clicked()
 {
-    jogo = new cadastroJogo(this->codtemporada, this->faseSelecionada, this->grupoSelecionado, this->rodadaSelecionada);
+    jogo = new cadastroJogo(this->codtemporada, this->faseSelecionada, this->grupoSelecionado, this->rodadaSelecionada, true);
     connect(jogo, SIGNAL(destroyed(QObject*)), this, SLOT(mostrar_jogos()));
     jogo->show();
 }

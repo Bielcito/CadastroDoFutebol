@@ -45,7 +45,7 @@ void telaTorneio::atualizar_abas()
         tab = new QTableWidget;
         inicializar_tabela(tab);
         ui->tabWidget->insertTab(0, tab, tr( ((QString)(nomesTorneio[i])).toStdString().c_str() ));
-        mostrarJogos(tab, i);
+        mostrarJogos(tab, i+1);
     }
 }
 
@@ -64,6 +64,9 @@ void telaTorneio::inicializar_tabela(QTableWidget *table)
     table->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
+/**
+ * mostram os jogos para a aba que a tabela que está visível,
+ * caso não tenha sido passada nenhuma por referência. */
 void telaTorneio::mostrarJogos(QTableWidget *table, int num)
 {
     if(table == NULL)
@@ -96,7 +99,7 @@ void telaTorneio::mostrarJogos(QTableWidget *table, int num)
     this->codgrupo = query.value(0).toString();
 
     //Pegar rodada de número = num:
-    if(!query.exec("SELECT rodada.codrodada FROM rodada WHERE rodada.codgrupo = " + codgrupo))
+    if(!query.exec("SELECT rodada.codrodada FROM rodada WHERE rodada.codgrupo = " + codgrupo + " AND rodada.numerodarodada = " + QString::number(num)))
     {
         QMessageBox::critical(0, "Erro!", query.lastError().text());
     }
@@ -131,17 +134,48 @@ void telaTorneio::mostrarJogos(QTableWidget *table, int num)
         table->resizeColumnsToContents();
     }
 }
+/**
+ * @brief telaTorneio::inicializar_lista_times
+ * Atualiza this->nomesTorneio para a rodada atual para que possa ser inserido um jogo nela.
+ */
+void telaTorneio::inicializar_lista_times()
+{
+    QSqlQuery query;
+
+    if(!query.exec("SELECT rodada.numerodarodada FROM rodada WHERE rodada.codrodada = " + this->codrodada))
+    {
+        QMessageBox::critical(0, "Erro!", query.lastError().text());
+        return;
+    }
+
+    if(!query.next())
+    {
+        QMessageBox::critical(0, "Erro!", "Erro de operacionalização em telaTorneio::inicializar_lista_times()");
+        return;
+    }
+
+    QString numerodarodada = query.value(0).toString();
+
+    if(numerodarodada == "1")
+    {
+        //if(!query.exec("SELECT codequipe FROM equipe WHERE equipe")) AQUII!
+    }
+}
 
 void telaTorneio::on_InserirJogo_clicked()
 {
-    jog = new cadastroJogo(this->codtemporada, this->codfase, this->codgrupo, this->codrodada);
+    QString rodadaatual = rodada_da_aba();
+    jog = new cadastroJogo(this->codtemporada, this->codfase, this->codgrupo, rodada_da_aba(), true);
     connect(jog, SIGNAL(destroyed(QObject*)), this, SLOT(callMostrarJogos()));
     jog->show();
 }
 
 void telaTorneio::callMostrarJogos()
 {
-    mostrarJogos(NULL, 0);
+    for(int i = 0; i < ui->tabWidget->count(); i++)
+    {
+        mostrarJogos((QTableWidget*)ui->tabWidget->widget(i), ui->tabWidget->count()-i);
+    }
 }
 void telaTorneio::on_Excluir_clicked()
 {
@@ -175,7 +209,7 @@ void telaTorneio::on_Excluir_clicked()
     }
 
     QSqlQuery query;
-    if(!query.exec("SELECT codjogo FROM jogo WHERE jogo.codequipecasa = " + casa.value(0).toString() + " AND jogo.codequipefora = " + fora.value(0).toString() + " AND jogo.codrodada = " + this->codrodada))
+    if(!query.exec("SELECT codjogo FROM jogo WHERE jogo.codequipecasa = " + casa.value(0).toString() + " AND jogo.codequipefora = " + fora.value(0).toString() + " AND jogo.codrodada = " + rodada_da_aba()))
     {
         QMessageBox::critical(0, "Erro!", query.lastError().text());
         return;
@@ -201,4 +235,33 @@ void telaTorneio::on_Excluir_clicked()
 void telaTorneio::on_pushButton_clicked()
 {
     delete this;
+}
+
+/**
+ * @brief telaTorneio::aba_alterada
+ * Altera o this->codrodada para o da aba atual toda vez que ela é alterada pelo usuário.
+ */
+QString telaTorneio::rodada_da_aba()
+{
+    int num = ui->tabWidget->count() - ui->tabWidget->currentIndex();
+
+    QSqlQuery query;
+    QString aux;
+
+    if(!query.exec("SELECT codrodada FROM rodada WHERE rodada.numerodarodada = " + QString::number(num) + " AND rodada.codgrupo = " + this->codgrupo))
+    {
+        QMessageBox::critical(0, "Erro!", query.lastError().text());
+        return "";
+    }
+
+    if(!query.next())
+    {
+        QMessageBox::critical(0, "Erro!", "Erro de operacionalização em telaTorneio::aba_alterada() 1");
+    }
+    else
+    {
+        aux = query.value(0).toString();
+    }
+
+    return aux;
 }

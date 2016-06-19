@@ -318,5 +318,12 @@ void cadastroArbitro::on_RemoverImg_clicked()
 
 void cadastroArbitro::resizeEvent(QResizeEvent *e)
 {
-    setPixmap();
+    if(e)
+    {
+        setPixmap();
+    }
+    else
+    {
+        setPixmap();
+    }
 }

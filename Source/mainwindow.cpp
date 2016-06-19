@@ -579,8 +579,6 @@ void MainWindow::on_actionCarregar_arquivo_de_Backup_triggered()
     path.append("/bin/psql.exe");
     path = "\"" + path + "\"";
 
-
-
     //Para pegar o caminho do arquivo de backup:
     QString filters("Arquivos de texto (*.txt);;All files (*.*)");
     QString defaultFilter("Arquivos de texto (*.txt)");
@@ -591,6 +589,16 @@ void MainWindow::on_actionCarregar_arquivo_de_Backup_triggered()
     //Para pegar o caminho do arquivo temporário que ainda será criado na pasta temp do localappdata:
     QString tempPath = getenv("LOCALAPPDATA");
     tempPath.append("/cadastrofutebol/temp/backup.txt");
+
+    //Apagando arquivo da pasta temp, caso tenha havido algum erro anteriormente:
+    if(QFile::exists(tempPath))
+    {
+        if(!QFile::remove(tempPath))
+        {
+            QMessageBox::critical(0,"Error!", "Não foi possível remover o arquivo temporário criado ao fazer o backup!");
+            return;
+        }
+    }
 
     if(!file.isEmpty())
     {
@@ -610,78 +618,13 @@ void MainWindow::on_actionCarregar_arquivo_de_Backup_triggered()
             return;
         }
 
-        //Para apagar os itens do banco de dados:
-        if(!query.exec("DELETE FROM arbitro WHERE codarbitro > 0"))
+        if(!query.exec("DROP SCHEMA PUBLIC CASCADE"))
         {
             QMessageBox::critical(0, "Erro!", query.lastError().text());
             return;
         }
-        if(!query.exec("DELETE FROM temporada WHERE codtemporada > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM campeonato WHERE codcampeonato > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM estadio WHERE codestadio > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM classificacao WHERE codclassificacao > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM equipe WHERE codequipe > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM equipecompetetemporada WHERE codequipe > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM escalacaojogo WHERE codjogo > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM estruturatemporada WHERE codestruturatemporada > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM gerador WHERE oid > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM jogador WHERE codjogador > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM jogo WHERE codjogo > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM lancepartida WHERE codlancepartida > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM narracao WHERE codnarracao > 0"))
-        {
-            QMessageBox::critical(0, "Erro!", query.lastError().text());
-            return;
-        }
-        if(!query.exec("DELETE FROM punicao WHERE codpunicao > 0"))
+
+        if(!query.exec("CREATE SCHEMA PUBLIC"))
         {
             QMessageBox::critical(0, "Erro!", query.lastError().text());
             return;

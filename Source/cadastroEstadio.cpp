@@ -29,6 +29,7 @@ cadastroEstadio::cadastroEstadio(QString sCode, QString nome, QString nomecomple
     ui->estNomeCompleto->setText(nomecompleto);
     ui->estCapacidade->setValue(capacidade.toInt());
     ui->estCidade->setText(cidade);
+    ui->estPais->setText(pais);
 
     this->pixmap = pixmap;
 
@@ -271,7 +272,14 @@ void cadastroEstadio::on_Cancelar_clicked()
 
 void cadastroEstadio::resizeEvent(QResizeEvent *e)
 {
-    setPixmap();
+    if(e)
+    {
+        setPixmap();
+    }
+    else
+    {
+        setPixmap();
+    }
 }
 
 bool cadastroEstadio::doesFileExist(const wchar_t *filename)

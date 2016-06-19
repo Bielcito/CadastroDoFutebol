@@ -1,7 +1,7 @@
 #include "cadastroJogo.h"
 #include "ui_cadastroJogo.h"
 
-cadastroJogo::cadastroJogo(QString codtemporada, QString codfase, QString codgrupo, QString codrodada, QWidget *parent) :
+cadastroJogo::cadastroJogo(QString codtemporada, QString codfase, QString codgrupo, QString codrodada, bool isTorneio, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::cadastroJogo)
 {
@@ -13,39 +13,11 @@ cadastroJogo::cadastroJogo(QString codtemporada, QString codfase, QString codgru
     this->codfase = codfase;
     this->codgrupo = codgrupo;
     this->codrodada = codrodada;
+    this->isTorneio = isTorneio;
     editandoEquipeCasa = false;
     editandoEquipeFora = false;
 
     inicializarListas();
-
-    inicializarComboBox();
-
-    connect(ui->EquipeCasaRelacionada, SIGNAL(currentIndexChanged(int)), this, SLOT(atualizarComboBoxEquipeCasa()));
-    connect(ui->EquipeForaRelacionada, SIGNAL(currentIndexChanged(int)), this, SLOT(atualizarComboBoxEquipeFora()));
-
-    connect(ui->GolsTimeCasaPritem, SIGNAL(valueChanged(int)), this, SLOT(somarPontosCasa()));
-    connect(ui->GolsTimeCasaProrrogacao, SIGNAL(valueChanged(int)), this, SLOT(somarPontosCasa()));
-    connect(ui->GolsTimeCasaPenaltis, SIGNAL(valueChanged(int)), this, SLOT(somarPontosCasa()));
-
-    connect(ui->GolsTimeForaPritem, SIGNAL(valueChanged(int)), this, SLOT(somarPontosFora()));
-    connect(ui->GolsTimeForaProrrogacao, SIGNAL(valueChanged(int)), this, SLOT(somarPontosFora()));
-    connect(ui->GolsTimeForaPenaltis, SIGNAL(valueChanged(int)), this, SLOT(somarPontosFora()));
-}
-
-cadastroJogo::cadastroJogo(QString codtemporada, QString codfase, QString codgrupo, QString codrodada, QStringList equipes, QWidget *parent)
-{
-    ui->setupUi(this);
-
-    setWindowModality(Qt::ApplicationModal);
-
-    this->codtemporada = codtemporada;
-    this->codfase = codfase;
-    this->codgrupo = codgrupo;
-    this->codrodada = codrodada;
-    editandoEquipeCasa = false;
-    editandoEquipeFora = false;
-
-    inicializarListas(equipes);
 
     inicializarComboBox();
 
@@ -248,50 +220,35 @@ void cadastroJogo::keyPressEvent(QKeyEvent *e)
     }
 }
 
+/**
+ * @brief cadastroJogo::inicializarListas
+ * Pega todas as equipes que estão competindo na temporada, que tenham vencido a rodada anterior:
+ */
 void cadastroJogo::inicializarListas()
-{
+{   
     QSqlQuery query;
-    if(!query.exec("SELECT equipe.nomeequipe FROM equipe LEFT JOIN equipecompetetemporada ON equipe.codequipe = equipecompetetemporada.codequipe WHERE equipecompetetemporada.codtemporada = " + codtemporada + " AND equipe.codequipe > 0 AND equipe.nomeequipe NOT IN (SELECT equipe.nomeequipe FROM equipe LEFT JOIN jogo ON equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora WHERE (equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora) AND jogo.codrodada = " + codrodada + ")"))
+
+    if(isTorneio)
     {
-        QMessageBox::critical(0, "Erro!", query.lastError().text());
-        return;
+        if(!query.exec("SELECT equipe.nomeequipe FROM equipe LEFT JOIN equipecompetetemporada ON equipe.codequipe = equipecompetetemporada.codequipe WHERE equipecompetetemporada.codtemporada = 1 AND equipe.codequipe > 0 AND equipe.nomeequipe NOT IN ( SELECT equipe.nomeequipe FROM equipe LEFT JOIN jogo ON equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora WHERE equipe.codequipe != jogo.codequipevencedora ) AND equipe.nomeequipe NOT IN (SELECT equipe.nomeequipe FROM equipe LEFT JOIN jogo ON equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora WHERE (equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora) AND (jogo.codrodada = " + codrodada + "))"))
+        {
+            QMessageBox::critical(0, "Erro!", query.lastError().text());
+            return;
+        }
+    }
+    else
+    {
+        if(!query.exec("SELECT equipe.nomeequipe FROM equipe LEFT JOIN equipecompetetemporada ON equipe.codequipe = equipecompetetemporada.codequipe WHERE equipecompetetemporada.codtemporada = " + codtemporada + " AND equipe.codequipe > 0 AND equipe.nomeequipe NOT IN (SELECT equipe.nomeequipe FROM equipe LEFT JOIN jogo ON equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora WHERE (equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora) AND jogo.codrodada = " + codrodada + ")"))
+        {
+            QMessageBox::critical(0, "Erro!", query.lastError().text());
+            return;
+        }
     }
 
     while(query.next())
     {
         this->equipes << query.value(0).toString();
     }
-
-    //Árbitros:
-    if(!query.exec("SELECT nomearbitro FROM arbitro WHERE arbitro.codtemporada = " + codtemporada))
-    {
-        QMessageBox::critical(0, "Erro!", query.lastError().text());
-        return;
-    }
-
-    while(query.next())
-    {
-        this->arbitros << query.value(0).toString();
-    }
-
-    //Estadios:
-    if(!query.exec("SELECT nomeestadio FROM estadio ORDER BY codestadio"))
-    {
-        QMessageBox::critical(0, "Erro!", query.lastError().text());
-        return;
-    }
-
-    while(query.next())
-    {
-        this->estadios << query.value(0).toString();
-    }
-}
-
-void cadastroJogo::inicializarListas(QStringList equipes)
-{
-    this->equipes = equipes;
-
-    QSqlQuery query;
 
     //Árbitros:
     if(!query.exec("SELECT nomearbitro FROM arbitro WHERE arbitro.codtemporada = " + codtemporada))
@@ -637,7 +594,7 @@ void cadastroJogo::on_Confirmar_clicked()
     }
     else if(golstimeforapritem > golstimecasapritem)
     {
-        codequipevencedora = golstimefora;
+        codequipevencedora = codequipefora;
     }
 
     if(golstimecasaprorrogacao > golstimeforaprorrogacao)

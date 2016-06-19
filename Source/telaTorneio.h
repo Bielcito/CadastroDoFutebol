@@ -43,6 +43,9 @@ private:
     void atualizar_abas();
     void inicializar_tabela(QTableWidget* table);
     void mostrarJogos(QTableWidget* table, int num);
+    void inicializar_lista_times();
+    QString rodada_da_aba();
+    QString rodada_anterior(QString x);
     cadastroJogo* jog;
 };
 
