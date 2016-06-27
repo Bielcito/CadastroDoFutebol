@@ -68,7 +68,7 @@ public:
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         comboBox = new QComboBox(cadastroCampeonato);
         comboBox->setObjectName(QStringLiteral("comboBox"));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        QSizePolicy sizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(comboBox->sizePolicy().hasHeightForWidth());
@@ -98,7 +98,7 @@ public:
         sizePolicy.setHeightForWidth(lineEdit_3->sizePolicy().hasHeightForWidth());
         lineEdit_3->setSizePolicy(sizePolicy);
         lineEdit_3->setMinimumSize(QSize(0, 25));
-        lineEdit_3->setMaxLength(30);
+        lineEdit_3->setMaxLength(150);
 
         gridLayout_2->addWidget(lineEdit_3, 6, 0, 1, 3);
 
@@ -108,8 +108,11 @@ public:
 
         label = new QLabel(cadastroCampeonato);
         label->setObjectName(QStringLiteral("label"));
-        sizePolicy.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
-        label->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy2);
 
         gridLayout_2->addWidget(label, 2, 0, 1, 3);
 
@@ -119,8 +122,8 @@ public:
 
         label_2 = new QLabel(cadastroCampeonato);
         label_2->setObjectName(QStringLiteral("label_2"));
-        sizePolicy.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
-        label_2->setSizePolicy(sizePolicy);
+        sizePolicy2.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
+        label_2->setSizePolicy(sizePolicy2);
 
         gridLayout_2->addWidget(label_2, 0, 0, 1, 3);
 
@@ -143,8 +146,8 @@ public:
 
         label_3 = new QLabel(cadastroCampeonato);
         label_3->setObjectName(QStringLiteral("label_3"));
-        sizePolicy.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
-        label_3->setSizePolicy(sizePolicy);
+        sizePolicy2.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
+        label_3->setSizePolicy(sizePolicy2);
 
         gridLayout_2->addWidget(label_3, 5, 0, 1, 3);
 
@@ -174,11 +177,11 @@ public:
 
         pushButton = new QPushButton(cadastroCampeonato);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-        pushButton->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
+        pushButton->setSizePolicy(sizePolicy3);
 
         gridLayout->addWidget(pushButton, 1, 1, 1, 1);
 
@@ -201,11 +204,11 @@ public:
 
         label_4 = new QLabel(cadastroCampeonato);
         label_4->setObjectName(QStringLiteral("label_4"));
-        QSizePolicy sizePolicy3(QSizePolicy::Ignored, QSizePolicy::Ignored);
-        sizePolicy3.setHorizontalStretch(10);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(label_4->sizePolicy().hasHeightForWidth());
-        label_4->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy4(QSizePolicy::Ignored, QSizePolicy::Ignored);
+        sizePolicy4.setHorizontalStretch(10);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(label_4->sizePolicy().hasHeightForWidth());
+        label_4->setSizePolicy(sizePolicy4);
         label_4->setStyleSheet(QStringLiteral("background-color: rgb(216, 216, 216);"));
 
         gridLayout->addWidget(label_4, 0, 0, 1, 3);

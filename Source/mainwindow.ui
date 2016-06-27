@@ -28,7 +28,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="CampeonatoTab">
        <attribute name="title">
@@ -122,7 +122,7 @@
                 <bool>false</bool>
                </property>
                <property name="editTriggers">
-                <set>QAbstractItemView::AnyKeyPressed</set>
+                <set>QAbstractItemView::NoEditTriggers</set>
                </property>
                <property name="selectionMode">
                 <enum>QAbstractItemView::SingleSelection</enum>
@@ -387,7 +387,7 @@
                 <bool>false</bool>
                </property>
                <property name="editTriggers">
-                <set>QAbstractItemView::AnyKeyPressed</set>
+                <set>QAbstractItemView::NoEditTriggers</set>
                </property>
                <property name="selectionMode">
                 <enum>QAbstractItemView::SingleSelection</enum>
@@ -459,8 +459,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>89</width>
-                  <height>142</height>
+                  <width>386</width>
+                  <height>486</height>
                  </rect>
                 </property>
                 <layout class="QFormLayout" name="formLayout">
@@ -659,7 +659,7 @@
                 <bool>false</bool>
                </property>
                <property name="editTriggers">
-                <set>QAbstractItemView::AnyKeyPressed</set>
+                <set>QAbstractItemView::NoEditTriggers</set>
                </property>
                <property name="selectionMode">
                 <enum>QAbstractItemView::SingleSelection</enum>
@@ -735,8 +735,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>147</width>
-                  <height>90</height>
+                  <width>386</width>
+                  <height>486</height>
                  </rect>
                 </property>
                 <layout class="QFormLayout" name="formLayout_2">
@@ -845,7 +845,7 @@
                 <bool>false</bool>
                </property>
                <property name="editTriggers">
-                <set>QAbstractItemView::AnyKeyPressed</set>
+                <set>QAbstractItemView::NoEditTriggers</set>
                </property>
                <property name="selectionMode">
                 <enum>QAbstractItemView::SingleSelection</enum>
@@ -985,8 +985,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>144</width>
-                  <height>194</height>
+                  <width>386</width>
+                  <height>486</height>
                  </rect>
                 </property>
                 <layout class="QFormLayout" name="formLayout_4">
@@ -1239,7 +1239,7 @@
                 <bool>false</bool>
                </property>
                <property name="editTriggers">
-                <set>QAbstractItemView::AnyKeyPressed</set>
+                <set>QAbstractItemView::NoEditTriggers</set>
                </property>
                <property name="selectionMode">
                 <enum>QAbstractItemView::SingleSelection</enum>
@@ -1305,8 +1305,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>169</width>
-                  <height>272</height>
+                  <width>386</width>
+                  <height>486</height>
                  </rect>
                 </property>
                 <layout class="QFormLayout" name="formLayout_5">
@@ -1687,7 +1687,7 @@
                 <bool>false</bool>
                </property>
                <property name="editTriggers">
-                <set>QAbstractItemView::AnyKeyPressed</set>
+                <set>QAbstractItemView::NoEditTriggers</set>
                </property>
                <property name="selectionMode">
                 <enum>QAbstractItemView::SingleSelection</enum>
@@ -1781,7 +1781,7 @@
                 <bool>false</bool>
                </property>
                <property name="editTriggers">
-                <set>QAbstractItemView::AnyKeyPressed</set>
+                <set>QAbstractItemView::NoEditTriggers</set>
                </property>
                <property name="selectionMode">
                 <enum>QAbstractItemView::SingleSelection</enum>

@@ -289,7 +289,7 @@ public:
         campTableWidget->setObjectName(QStringLiteral("campTableWidget"));
         campTableWidget->setEnabled(true);
         campTableWidget->setAutoScroll(false);
-        campTableWidget->setEditTriggers(QAbstractItemView::AnyKeyPressed);
+        campTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         campTableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
         campTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
         campTableWidget->setShowGrid(false);
@@ -438,7 +438,7 @@ public:
         estTableWidget->setObjectName(QStringLiteral("estTableWidget"));
         estTableWidget->setEnabled(true);
         estTableWidget->setAutoScroll(false);
-        estTableWidget->setEditTriggers(QAbstractItemView::AnyKeyPressed);
+        estTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         estTableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
         estTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
         estTableWidget->setShowGrid(false);
@@ -469,7 +469,7 @@ public:
         EstadioScrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 89, 142));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 386, 486));
         formLayout = new QFormLayout(scrollAreaWidgetContents_2);
         formLayout->setSpacing(6);
         formLayout->setContentsMargins(11, 11, 11, 11);
@@ -595,7 +595,7 @@ public:
         arbTableWidget->setObjectName(QStringLiteral("arbTableWidget"));
         arbTableWidget->setEnabled(true);
         arbTableWidget->setAutoScroll(false);
-        arbTableWidget->setEditTriggers(QAbstractItemView::AnyKeyPressed);
+        arbTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         arbTableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
         arbTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
         arbTableWidget->setShowGrid(false);
@@ -630,7 +630,7 @@ public:
         ArbitroScrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName(QStringLiteral("scrollAreaWidgetContents_3"));
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 147, 90));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 386, 486));
         formLayout_2 = new QFormLayout(scrollAreaWidgetContents_3);
         formLayout_2->setSpacing(6);
         formLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -707,7 +707,7 @@ public:
         equTableWidget->setObjectName(QStringLiteral("equTableWidget"));
         equTableWidget->setEnabled(true);
         equTableWidget->setAutoScroll(false);
-        equTableWidget->setEditTriggers(QAbstractItemView::AnyKeyPressed);
+        equTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         equTableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
         equTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
         equTableWidget->setShowGrid(false);
@@ -774,7 +774,7 @@ public:
         EquipesScrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents_4 = new QWidget();
         scrollAreaWidgetContents_4->setObjectName(QStringLiteral("scrollAreaWidgetContents_4"));
-        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 144, 194));
+        scrollAreaWidgetContents_4->setGeometry(QRect(0, 0, 386, 486));
         formLayout_4 = new QFormLayout(scrollAreaWidgetContents_4);
         formLayout_4->setSpacing(6);
         formLayout_4->setContentsMargins(11, 11, 11, 11);
@@ -924,7 +924,7 @@ public:
         jogTableWidget->setObjectName(QStringLiteral("jogTableWidget"));
         jogTableWidget->setEnabled(true);
         jogTableWidget->setAutoScroll(false);
-        jogTableWidget->setEditTriggers(QAbstractItemView::AnyKeyPressed);
+        jogTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         jogTableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
         jogTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
         jogTableWidget->setShowGrid(false);
@@ -953,7 +953,7 @@ public:
         JogadoresScrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents_5 = new QWidget();
         scrollAreaWidgetContents_5->setObjectName(QStringLiteral("scrollAreaWidgetContents_5"));
-        scrollAreaWidgetContents_5->setGeometry(QRect(0, 0, 169, 272));
+        scrollAreaWidgetContents_5->setGeometry(QRect(0, 0, 386, 486));
         formLayout_5 = new QFormLayout(scrollAreaWidgetContents_5);
         formLayout_5->setSpacing(6);
         formLayout_5->setContentsMargins(11, 11, 11, 11);
@@ -1166,7 +1166,7 @@ public:
         tempTableWidget->setEnabled(true);
         tempTableWidget->setMinimumSize(QSize(273, 132));
         tempTableWidget->setAutoScroll(false);
-        tempTableWidget->setEditTriggers(QAbstractItemView::AnyKeyPressed);
+        tempTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         tempTableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
         tempTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
         tempTableWidget->setShowGrid(false);
@@ -1220,7 +1220,7 @@ public:
         sizePolicy7.setHeightForWidth(equipesParticipantesTableWidget->sizePolicy().hasHeightForWidth());
         equipesParticipantesTableWidget->setSizePolicy(sizePolicy7);
         equipesParticipantesTableWidget->setAutoScroll(false);
-        equipesParticipantesTableWidget->setEditTriggers(QAbstractItemView::AnyKeyPressed);
+        equipesParticipantesTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         equipesParticipantesTableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
         equipesParticipantesTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
         equipesParticipantesTableWidget->setShowGrid(false);
@@ -1262,7 +1262,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

@@ -55,6 +55,8 @@ void tipoCampeonato::atualizarTabela()
         ui->tabela->insertRow(0);
         ui->tabela->setItem(0,0, new QTableWidgetItem(query.value(1).toString()));
     }
+
+    ui->tabela->resizeColumnsToContents();
 }
 
 void tipoCampeonato::on_novo_clicked()

@@ -9,6 +9,7 @@
 #include <iostream>
 #include <QFile>
 #include <QFileDialog>
+#include <windows.h>
 using std::cout;
 using std::endl;
 
@@ -46,6 +47,7 @@ private:
     QString file;
     bool imageIsChanged;
     void setPixmap();
+    bool doesFileExist(const wchar_t *filename);
 };
 
 #endif // cadastroArbitro_H

@@ -75,9 +75,14 @@ void cadastroCampeonato::on_pushButton_clicked()
     }
 }
 
+bool cadastroCampeonato::doesFileExist(const wchar_t *filename)
+{
+    return GetFileAttributes((LPCWSTR)filename) != INVALID_FILE_ATTRIBUTES;
+}
+
 /**
  * @brief cadastroCampeonato::on_pushButton_2_clicked
- * Esta função é executada quando é apertado do botão "CONFIRMAR" do "cadastroArbitro.ui".
+ * Esta função é executada quando é apertado do botão "CONFIRMAR" do "cadastroCampeonato.ui".
  * Ela adiciona as entradas ao banco, copia a imagem selecionada para o diretório \imagens\campeonato\ e altera
  * o nome dela para ter o mesmo ID da entrada inserida.
  * As entradas só são adicionadas se todos os campos forem preenchidos, e se a houver alguma imagem selecionada.
@@ -148,7 +153,19 @@ void cadastroCampeonato::on_pushButton_2_clicked()
     QString path;
 
     if(imageIsChanged) // Caso o usuário selecione alguma imagem apertando no botão "Selecionar imagem..."
-    {
+    {   
+        //Verifica se o diretório existe, se não existir, ele cria:
+        QString dir = getenv("LOCALAPPDATA");
+        dir.append("/cadastrofutebol/imagens/campeonato/");
+        if(!doesFileExist(dir.toStdWString().c_str()))
+        {
+            if(!CreateDirectory(dir.toStdWString().c_str(), NULL))
+            {
+                QMessageBox::critical(0, "Erro!", "Não conseguiu criar a pasta!\n" + dir);
+                return;
+            }
+        }
+
         //filename recebe o codcampeonato + extensão do arquivo original.
         filename = query.value(0).toString() + file.right(4);
 
@@ -196,6 +213,18 @@ void cadastroCampeonato::on_pushButton_2_clicked()
         //caso o campo escudo da tabela de campeonato não estiver vazia...
         if(!query2.value(0).toString().isEmpty() && imageIsRemoved)
         {
+            //Verifica se o diretório existe, se não existir, ele cria:
+            QString dir = getenv("LOCALAPPDATA");
+            dir.append("/cadastrofutebol/imagens/campeonato/");
+            if(!doesFileExist(dir.toStdWString().c_str()))
+            {
+                if(!CreateDirectory(dir.toStdWString().c_str(), NULL))
+                {
+                    QMessageBox::critical(0, "Erro!", "Não conseguiu criar a pasta!\n" + dir);
+                    return;
+                }
+            }
+
             path = getenv("LOCALAPPDATA");
             path.append("/cadastrofutebol/imagens/campeonato/" + query2.value(0).toString());
 

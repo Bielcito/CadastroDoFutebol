@@ -7,6 +7,7 @@
 #include <QSqlError>
 #include <QFileDialog>
 #include <QDate>
+#include <windows.h>
 #include "tipoequipe.h"
 #include <iostream>
 using namespace std;
@@ -42,6 +43,7 @@ private:
     void keyPressEvent(QKeyEvent *e);
     void atualizarComboBox();
     void inicializar_sem_jogador();
+    bool doesFileExist(const wchar_t *filename);
 };
 
 #endif // CADASTROJOGADOR_H

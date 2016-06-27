@@ -51,7 +51,7 @@ cadastroEquipe::cadastroEquipe(QString codequipe, QString nomeequipe, QString no
     {
         if(datafundacao[i] != '-')
         {
-            day = day + datafundacao[i];
+            month = month + datafundacao[i];
         }
         else
         {
@@ -60,7 +60,7 @@ cadastroEquipe::cadastroEquipe(QString codequipe, QString nomeequipe, QString no
     }
     for(i++; i < datafundacao.size(); i++)
     {
-        month = month + datafundacao[i];
+        day = day + datafundacao[i];
     }
 
     QDate date;
@@ -228,6 +228,18 @@ void cadastroEquipe::on_Confirmar_clicked()
 
         if(imageIsChanged) //Se a imagem tiver sido alterada, pressionando-se o botão "Selecionar imagem".
         {
+            //Verifica se o diretório existe, se não existir, ele cria:
+            QString dir = getenv("LOCALAPPDATA");
+            dir.append("/cadastrofutebol/imagens/equipe/");
+            if(!doesFileExist(dir.toStdWString().c_str()))
+            {
+                if(!CreateDirectory(dir.toStdWString().c_str(), NULL))
+                {
+                    QMessageBox::critical(0, "Erro!", "Não conseguiu criar a pasta!\n" + dir);
+                    return;
+                }
+            }
+
             //Pegando a string do caminho + nome do arquivo que será criado.
             QString path;
             QString nomeDoArquivo = editCode + file.right(4);
@@ -332,6 +344,18 @@ void cadastroEquipe::on_Confirmar_clicked()
 
         if(file.size() > 0)
         {
+            //Verifica se o diretório existe, se não existir, ele cria:
+            QString dir = getenv("LOCALAPPDATA");
+            dir.append("/cadastrofutebol/imagens/equipe/");
+            if(!doesFileExist(dir.toStdWString().c_str()))
+            {
+                if(!CreateDirectory(dir.toStdWString().c_str(), NULL))
+                {
+                    QMessageBox::critical(0, "Erro!", "Não conseguiu criar a pasta!\n" + dir);
+                    return;
+                }
+            }
+
             //Copiando a imagem para a sua devida pasta no localappdata:
             QString path;
             QString nomeDoArquivo = query.value(0).toString() + file.right(4);
@@ -420,4 +444,14 @@ void cadastroEquipe::setPixmap()
     {
         ui->Pixmap->setPixmap(pixmap->scaled(ui->Pixmap->width(), ui->Pixmap->height()));
     }
+}
+
+bool cadastroEquipe::doesFileExist(const wchar_t *filename)
+{
+    return GetFileAttributes((LPCWSTR)filename) != INVALID_FILE_ATTRIBUTES;
+}
+
+void cadastroEquipe::on_Cancelar_clicked()
+{
+    close();
 }

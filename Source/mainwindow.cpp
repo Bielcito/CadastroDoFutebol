@@ -216,8 +216,15 @@ void MainWindow::on_campExcluir_clicked()
 
         if(!query.exec("DELETE FROM ONLY campeonato WHERE codcampeonato = '" + id + "' RETURNING escudo"))
         {
-            QMessageBox::critical(0,"Erro!", query.lastError().text());
-            return;
+            if(query.lastError().number() == 23503)
+            {
+                QMessageBox::critical(0, "Erro!", "Não é possível excluir este campeonato, pois já existe uma temporada criada relacionada a ele. Exclua todas as temporadas relacionadas ao campeonato, e tente novamente depois.");
+            }
+            else
+            {
+                QMessageBox::critical(0,"Erro!", query.lastError().text());
+                return;
+            }
         }
 
         query.next();

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <QFileDialog>
 #include <tipocampeonato.h>
+#include <windows.h>
 using std::cout;
 using std::endl;
 
@@ -46,6 +47,7 @@ private:
     bool editMode;
     QString editCode;
     void setPixmap();
+    bool doesFileExist(const wchar_t *filename);
 };
 
 #endif // CADASTROCAMPEONATO_H

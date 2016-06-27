@@ -222,7 +222,7 @@ void cadastroJogo::keyPressEvent(QKeyEvent *e)
 
 /**
  * @brief cadastroJogo::inicializarListas
- * Pega todas as equipes que estão competindo na temporada, que tenham vencido a rodada anterior:
+ * Pega todas as equipes que estão competindo na temporada, que não tenham perdido nenhuma rodada, e que não tenham jogado na rodada atual:
  */
 void cadastroJogo::inicializarListas()
 {   
@@ -230,7 +230,7 @@ void cadastroJogo::inicializarListas()
 
     if(isTorneio)
     {
-        if(!query.exec("SELECT equipe.nomeequipe FROM equipe LEFT JOIN equipecompetetemporada ON equipe.codequipe = equipecompetetemporada.codequipe WHERE equipecompetetemporada.codtemporada = 1 AND equipe.codequipe > 0 AND equipe.nomeequipe NOT IN ( SELECT equipe.nomeequipe FROM equipe LEFT JOIN jogo ON equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora WHERE equipe.codequipe != jogo.codequipevencedora ) AND equipe.nomeequipe NOT IN (SELECT equipe.nomeequipe FROM equipe LEFT JOIN jogo ON equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora WHERE (equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora) AND (jogo.codrodada = " + codrodada + "))"))
+        if(!query.exec("SELECT equipe.nomeequipe FROM equipe LEFT JOIN equipecompetetemporada ON equipe.codequipe = equipecompetetemporada.codequipe WHERE equipecompetetemporada.codtemporada = " + codtemporada + " AND equipe.codequipe > 0 AND equipe.nomeequipe NOT IN ( SELECT equipe.nomeequipe FROM equipe LEFT JOIN jogo ON equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora WHERE equipe.codequipe != jogo.codequipevencedora ) AND equipe.nomeequipe NOT IN (SELECT equipe.nomeequipe FROM equipe LEFT JOIN jogo ON equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora WHERE (equipe.codequipe = jogo.codequipecasa OR equipe.codequipe = jogo.codequipefora) AND (jogo.codrodada = " + codrodada + "))"))
         {
             QMessageBox::critical(0, "Erro!", query.lastError().text());
             return;

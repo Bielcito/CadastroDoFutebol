@@ -6,6 +6,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QFileDialog>
+#include <windows.h>
 #include "tipoequipe.h"
 
 namespace Ui {
@@ -34,6 +35,8 @@ private slots:
 
     void resizeEvent(QResizeEvent* e);
 
+    void on_Cancelar_clicked();
+
 private:
     Ui::cadastroEquipe *ui;
     QString editCode;
@@ -43,6 +46,7 @@ private:
     QString file;
     void keyPressEvent(QKeyEvent *e);
     void setPixmap();
+    bool doesFileExist(const wchar_t *filename);
 };
 
 #endif // CADASTROEQUIPE_H
